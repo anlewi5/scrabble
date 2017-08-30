@@ -33,4 +33,13 @@ class ScrabbleTest < Minitest::Test
   def test_it_can_score_nil
     assert_equal 0, scrabble.score(nil)
   end
+
+  def test_it_scores_with_letter_multipliers
+    assert_equal 9, scrabble.score_with_multipliers('hello', [1,2,1,1,1])
+    assert_equal 18, scrabble.score_with_multipliers('hello', [1,2,1,1,1], 2)
+  end
+
+  def test_it_gives_10_point_bonus
+    assert_equal 48, scrabble.score_with_multipliers('sparkle', [1,2,1,3,1,2,1], 2)
+  end
 end
