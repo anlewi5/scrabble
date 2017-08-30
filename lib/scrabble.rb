@@ -4,11 +4,19 @@ class Scrabble
     word.chars
   end
 
+  def capitalize_letters(letters)
+    letters.map { |char| char.upcase }
+  end
+
+  def get_letter_scores(cap_letters)
+    cap_letters.map { |char| point_values[char] }
+  end
+
   def score(word)
     return 0 if word.nil?
     letters = split_word(word)
-    cap_letters = letters.map { |char| char.upcase }
-    letter_scores = cap_letters.map { |char| point_values[char] }
+    cap_letters = capitalize_letters(letters)
+    letter_scores = get_letter_scores(cap_letters)
     letter_scores.sum
   end
 
