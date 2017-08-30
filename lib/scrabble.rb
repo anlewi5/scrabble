@@ -24,6 +24,14 @@ class Scrabble
     letter_scores.size.times.collect { |i| letter_scores[i] * multipliers[i] }
   end
 
+  def check_10_point_bonus(multiplied, letters)
+    if letters.count < 7
+      multiplied.sum
+    elsif letters.count >= 7
+      (multiplied.sum + 10)
+    end
+  end
+
   def score_with_multipliers(word, multipliers, final_multiplier = 1)
     return 0 if word.nil?
     letters = split_word(word)
