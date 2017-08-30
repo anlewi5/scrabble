@@ -1,7 +1,15 @@
 class Scrabble
 
+  def split_word(word)
+    word.chars
+  end
+
   def score(word)
-    1
+    return 0 if word.nil?
+    letters = split_word(word)
+    cap_letters = letters.map { |char| char.upcase }
+    letter_scores = cap_letters.map { |char| point_values[char] }
+    letter_scores.sum
   end
 
   def point_values
@@ -12,7 +20,7 @@ class Scrabble
       "M"=>3, "N"=>1, "O"=>1, "P"=>3,
       "Q"=>10, "R"=>1, "S"=>1, "T"=>1,
       "U"=>1, "V"=>4, "W"=>4, "X"=>8,
-      "Y"=>4, "Z"=>10
+      "Y"=>4, "Z"=>10, ""=>0
     }
   end
 end
